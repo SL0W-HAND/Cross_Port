@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './styles/stats.css'
 
 const electron = window.require('electron');
 

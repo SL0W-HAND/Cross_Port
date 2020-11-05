@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './styles/files.css'
 
 const electron = window.require('electron');
 
