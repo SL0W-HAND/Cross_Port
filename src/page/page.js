@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Files from './components/files'
+import Stats from './components/stats'
+import Server from './components/server_on'
 
 export class page extends Component {
 
@@ -20,7 +22,18 @@ export class page extends Component {
         const server_on = this.state.server_on;
         return (
             <React.Fragment>
-                <Files/>
+                {
+                    server_on ?
+                        <Server changeServerOn = {this.handleServerChange}/>
+                    :
+                        <div className='App'>
+                            <Files/>
+                            <Stats changeServerOn = {this.handleServerChange}/>
+                        </div>
+                }
+                
+                
+
             </React.Fragment>
         )
     }
