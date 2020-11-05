@@ -1,0 +1,47 @@
+.files{
+    color:black;
+}
+
+.file-component{
+   
+    padding:3px; 
+    /*border:  3px solid white;*/
+    border-color: blanchedalmond;   
+    width: 80vw;
+    height: 100vh;
+    min-height: 680px;
+    min-width: 720px;
+}
+.container{
+    margin: 2%;
+    display: inline-block;
+    height: 10vh;
+}
+
+.file-container{
+    height:80vh;
+    overflow:auto;
+    margin: 0 2%;
+    border-radius: 1%;
+    border: 1px solid white;
+    
+}
+
+.card{
+    min-width: 200px;
+    background-color: dimgrey;
+}
+
+/*
+::-webkit-scrollbar{
+    width: 0.75rem;
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 1%;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ */

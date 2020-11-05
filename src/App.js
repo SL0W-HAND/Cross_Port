@@ -1,13 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+import Page from './page/page'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-       <p>hyhhS</p>
-      </header>
-    </div>
+    <Page/>
   );
 }
 
