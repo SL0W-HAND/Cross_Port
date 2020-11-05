@@ -11,7 +11,7 @@ export class server_on extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='App'>
                 <p>el server esta encendido</p>
                 <button className='btn btn-danger' onClick={this.handlechanges}>apagar</button>
             </div>

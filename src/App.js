@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Files from './components/files'
 import Stats from './components/stats'
 import Server from './components/server_on'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './components/styles/App.css'
 
 export class App extends Component {
 
@@ -31,9 +33,6 @@ export class App extends Component {
                             <Stats changeServerOn = {this.handleServerChange}/>
                         </div>
                 }
-                
-                
-
             </React.Fragment>
         )
     }
