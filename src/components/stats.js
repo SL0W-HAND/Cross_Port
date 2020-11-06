@@ -10,7 +10,6 @@ export class stats extends Component {
         super(props)
         this.handleOnClick = this.handleOnClick.bind(this)
         this.checkConection = this.checkConection.bind(this)
-        this.burnBaby = this.burnBaby.bind(this)
         this.state = {
             networkName:[],
         }
@@ -37,27 +36,9 @@ export class stats extends Component {
     };
 
     handleOnClick(){
-        new Promise (()=>{
-            this.checkConection();
-        })
-        .then(()=>{
-            if (this.state.networkName == false) {
-                //elerta de bootstrap
-            } else {
-                this.burnBaby()
-                console.log('hgcg')
-            }
-                 
-        });   
-
-        //this.props.changeServerOn(true);        //electron.ipcRenderer.send('burn-baby',ff); 
-             
+         this.props.changeServerOn(true);        
+         //electron.ipcRenderer.send('burn-baby',ff);     
     };
-
-    burnBaby(){
-        this.props.changeServerOn(true);
-                //electron.ipcRenderer.send('burn-baby',ff);
-    }
 
     checkConection(){
         electron.ipcRenderer.send('network_name_req');
