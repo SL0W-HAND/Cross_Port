@@ -1,18 +1,13 @@
 .stats_container{
-    display:flex;
+    width: 20vw;
+   
+    display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    min-height: 680px;
-    min-width: 180px;
-    /*height: 100px;*/
-    float: right;
-    position: absolute;
-    right: 0;
-    /*border:3px solid white;*/
-    /*width: 20vw;
-    height: 100vh;*/
+
 }
 
-.button_on{
-    margin: auto;
+.wifi-icon{
+    width: 70px;
 }
