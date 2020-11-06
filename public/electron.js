@@ -126,6 +126,8 @@ electron.ipcMain.on('network_name_req',() => {
        
         mainWindow.webContents.send('network_name_response',name)
         //=> 'wu-tang lan'
+    }).catch(err => {
+        mainWindow.webContents.send('network_name_response',false)
     })
 })
 
