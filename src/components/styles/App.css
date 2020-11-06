@@ -7,10 +7,8 @@
 .App {
   /* Comentario */
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 600px;
   min-width: 400px;
   display: flex;
-  flex-direction: column;
-  
   color: white;
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import './styles/files.css'
+import './styles/files.css';
+import add_file_icon from './assets/file-plus.svg';
+import minus_file_icon from './assets/file-minus.svg'
 
 const electron = window.require('electron');
 
@@ -8,15 +10,16 @@ export class files extends Component {
     constructor(props){
         super(props);
         this.onOpen = this.onOpen.bind(this);
+        this.reset = this.reset.bind(this);
         this.state = {
             name:[]
         }
         
-    }
+    };
 
     componentDidMount(){
         this.listen()
-      }
+      };
   
       listen = async () => {
           
@@ -27,10 +30,17 @@ export class files extends Component {
                   name : arg
               })    
           })
-      }
+      };
   
       onOpen(){
           electron.ipcRenderer.send('open-dialog')
+      };
+
+      reset(){
+        electron.ipcRenderer.send('reset-files')
+        this.setState({
+            name : []
+        })
       };
 
 
@@ -38,9 +48,9 @@ export class files extends Component {
         return (
             <div className='file-component'>
 
-                <div className='container'>
-
-                    <button className='btn btn-primary ' onClick={this.onOpen}>add files <i></i></button>
+                <div className='button_container'>
+                    <button className='btn btn-primary ' onClick={this.onOpen}>add files <img src={add_file_icon}/></button>
+                    <button className='btn btn-danger restart ' onClick={this.reset}>Restrt files <img src={minus_file_icon}/></button>
                 </div>    
                 <div className='file-container'>
                     {this.state.name.map((doc,i) =>

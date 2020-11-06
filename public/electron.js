@@ -19,6 +19,7 @@ const wifiName = require('wifi-name');
 var network = require('network');
 var exphbs  = require('express-handlebars');
 
+
 require('electron-reload')(__dirname);
 
 //i dont know why thats didn't work 
@@ -114,15 +115,19 @@ electron.ipcMain.on('burn-baby', (e,arg) => {
     //mainWindow.webContents.send('return-exe', '');
 });
 
-wifiName().then(name => {
-    //console.log(name);   
-    mainWindow.webContents.send('network_name',name)
-    //=> 'wu-tang lan'
-})
+
 /*
 .catch(
     mainWindow.webContents.send('network_name','error')
 );*/
+electron.ipcMain.on('network_name_req',() => {
+    wifiName().then(name => {
+        console.log(name);   
+       
+        mainWindow.webContents.send('network_name_response',name)
+        //=> 'wu-tang lan'
+    })
+})
 
 network.get_public_ip(function(err, ip) {
     
