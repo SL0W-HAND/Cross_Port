@@ -17,7 +17,7 @@ export class App extends Component {
 
     handleServerChange(e) {
         this.setState({server_on: e});
-        console.log(this.state.server_on)
+        //console.log(this.state.server_on)
     }
 
     render() {
