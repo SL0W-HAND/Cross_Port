@@ -85,7 +85,7 @@ electron.ipcMain.on('open-dialog', async () =>{
 
     if (result.canceled == false){
         
-        
+        //falta cancelar repetidos
          result.filePaths.forEach((element) => {
 
                 files.push({
@@ -118,7 +118,9 @@ electron.ipcMain.on('burn-baby', (e,arg) => {
     //mainWindow.webContents.send('return-exe', '');
 });
 
-
+electron.ipcMain.on('update-files',(e,data)=>{
+    files = data;
+})
 /*
 .catch(
     mainWindow.webContents.send('network_name','error')

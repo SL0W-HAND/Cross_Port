@@ -39,10 +39,11 @@ export class files extends Component {
       };
 
       reset(){
-        electron.ipcRenderer.send('reset-files')
+        
         this.setState({
             name : []
         })
+        electron.ipcRenderer.send('update-files',[])
       };
 
       deleate = (file) => {
@@ -51,11 +52,14 @@ export class files extends Component {
           arr.map((register) => {
               if(file.name === file.name){
                   arr.splice(counter,1)
+                  electron.ipcRenderer.send('update-files',arr);
               }else{
                   counter++;
               }
           })
           this.setState({name:arr})
+          
+          
       }
 
 
