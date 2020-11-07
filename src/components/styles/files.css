@@ -1,5 +1,6 @@
 .files{
     color:black;
+    display: inline-block;
 }
 
 .file-component{
@@ -31,12 +32,23 @@
 
 .card{
     min-width: 200px;
-    background-color: dimgrey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
 }
 
-
+.card_image{
+    height: 35px;
+   margin-top: 15px;
+   margin-left: 15px;
+}
 .restart{
     margin-left: 16px;
+}
+.cardbutton{
+margin-right: 10px;
 }
 
 /*

@@ -84,14 +84,17 @@ electron.ipcMain.on('open-dialog', async () =>{
     result = await dialog.showOpenDialog(mainWindow,options)
 
     if (result.canceled == false){
+        
+        
+         result.filePaths.forEach((element) => {
 
-        result.filePaths.forEach((element) => {
-            files.push({
-                'path':element,
-                'name':path.basename(element)
+                files.push({
+                    'path':element,
+                    'name':path.basename(element)
+                });
+    
             });
-
-        });
+        
 
         mainWindow.webContents.send('return-name', files);
 

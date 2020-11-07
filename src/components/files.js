@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './styles/files.css';
 import add_file_icon from './assets/file-plus.svg';
-import minus_file_icon from './assets/file-minus.svg'
+import minus_file_icon from './assets/file-minus.svg';
+import archive from './assets/archive.svg'
 
 const electron = window.require('electron');
 
@@ -11,6 +12,7 @@ export class files extends Component {
         super(props);
         this.onOpen = this.onOpen.bind(this);
         this.reset = this.reset.bind(this);
+        this.deleate = this.deleate.bind(this)
         this.state = {
             name:[]
         }
@@ -43,28 +45,36 @@ export class files extends Component {
         })
       };
 
+      deleate = (file) => {
+          var counter = 0;
+          var arr = this.state.name;
+          arr.map((register) => {
+              if(file.name === file.name){
+                  arr.splice(counter,1)
+              }else{
+                  counter++;
+              }
+          })
+          this.setState({name:arr})
+      }
+
 
     render() {
         return (
             <div className='file-component'>
 
                 <div className='button_container'>
-                    <button className='btn btn-primary ' onClick={this.onOpen}>add files <img src={add_file_icon}/></button>
+                    <button className='btn btn-primary ' onClick={this.onOpen}>add files <img src={add_file_icon} alt='add file'/></button>
                     <button className='btn btn-danger restart ' onClick={this.reset}>Restrt files <img src={minus_file_icon}/></button>
                 </div>    
                 <div className='file-container'>
                     {this.state.name.map((doc,i) =>
-                        <div className='card mb-3'>
-                            <div className='row no-gutters'>
-                                <div className='col-md-4'>
-                                    <i className='card-img'></i>
-                                </div>
-                                <div className='col-md-8'>
-                                    <div className='card-body'>
-                                        <p key={i} className='files card-text'> {doc.name}</p>
-                                    </div>
-                                </div>                    
-                            </div>
+                        <div className='card row mb-3 '>
+                            <figure>
+                                <img className='card_image' src={archive}/>
+                            </figure>
+                            <p key={i} className='files card-text'> {doc.name}</p>
+                            <button  className='cardbutton btn btn-danger' onClick={() => this.deleate(doc)}>X</button>
                         </div>        
                     )}
                 </div>
