@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './styles/server-on.css'
 
 const electron = window.require('electron');
 
@@ -33,11 +34,16 @@ export class server_on extends Component {
     handlechanges(){
         this.props.changeServerOn(false)
     }
+
     render() {
         return (
-            <div className='App'>
+            <div className='server'>
+                
                 <p>el server esta encendido</p>
-                <button className='btn btn-danger' onClick={this.handlechanges}>apagar</button>
+                <div className='info'>
+                    <button className='btn btn-danger' onClick={this.handlechanges}>apagar</button>
+                </div>
+                
             </div>
         )
     }

@@ -1,0 +1,11 @@
+.server{
+background-color: #282c34;
+  min-height: 600px;
+  min-width: 400px;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: space-around;
+}
