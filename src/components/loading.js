@@ -16,11 +16,13 @@ export class loading extends Component {
 
     getIpAdrerss = async () => {
         electron.ipcRenderer.on('ip_adress_res',(e,arg) => {
-            if( arg.private === false){
-                //apagar desde aqui
+            if( arg.privateIP === false){
+                this.props.server(false)
             }else{
-                 console.log(arg)
-                this.props.isloading(false)
+                console.log(arg)
+                
+                this.props.isloading(arg,false)
+               // this.props.publicAdress = arg.publicIp
             }
         })
     }
