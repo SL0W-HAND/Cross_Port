@@ -104,8 +104,54 @@ electron.ipcMain.on('open-dialog', async () =>{
    // console.log(files);
 });
 
+
+var iPadress = {
+    privateIp: '',
+    publicIp: ''
+}
+electron.ipcMain.on('ip_adress_req', async () => {
+    
+    const publicIp = new Promise((resolve,reject) => {
+        network.get_public_ip(function(err, ip) {
+    
+            //mainWindow.webContents.send('publicIp',err || ip)
+            if (err){
+                iPadress.publicIp = false
+                resolve()
+            }else{
+                iPadress.publicIp = ip
+                resolve()
+            }
+          })
+    }) 
+
+    const privateIp = new Promise((resolve,reject) => {
+        network.get_private_ip(function(err, ip) {
+    
+            //mainWindow.webContents.send('privateIp',err || ip)
+            if (err){
+                iPadress.privateIp = false
+                reject()
+            }else{
+                iPadress.privateIp = ip
+                console.log('ip')
+                resolve()    
+            }
+          })
+    })
+
+    privateIp.then(() => {
+        publicIp
+    }).then(() => {
+        mainWindow.webContents.send('ip_adress_res',iPadress)
+    }).catch(() => {
+        mainWindow.webContents.send('ip_adress_res',iPadress)
+    })
+
+})
+
 electron.ipcMain.on('burn-baby', (e,arg) => {
-    console.log( arg );
+    console.log( 'burn' );
     server.get('/', (req, res) => {
         res.render('index',{
             title:'server',
@@ -136,22 +182,5 @@ electron.ipcMain.on('network_name_req',() => {
     })
 })
 
-network.get_public_ip(function(err, ip) {
-    
-    //mainWindow.webContents.send('publicIp',err || ip)
-    if (err){
-        console.log(err)
-    }else{
-        mainWindow.webContents.send('publicIp',ip)
-    }
-  })
 
-network.get_private_ip(function(err, ip) {
-    
-    //mainWindow.webContents.send('privateIp',err || ip)
-    if (err){
-        console.log(err)
-    }else{
-        mainWindow.webContents.send('privateIp',ip)
-    }
-  })
+

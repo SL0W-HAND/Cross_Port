@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './styles/server-on.css'
+import Loader from './loading'
 
 const electron = window.require('electron');
 
@@ -7,6 +8,13 @@ export class server_on extends Component {
     constructor(props){
         super(props)
         this.handlechanges = this.handlechanges.bind(this)
+        this.changeloading = this.changeloading.bind(this)
+        this.state = {
+            loading: true,
+            publicIp: false,
+            privateIp: false,
+            on: true
+        }
     }
 
     //checar la coneccion aqui y retornar al levantar estado 
@@ -35,16 +43,30 @@ export class server_on extends Component {
         this.props.changeServerOn(false)
     }
 
+    changeloading(e){
+        this.setState({loading: e})
+    }
+
     render() {
+        const loading = this.state.loading
+        const privateip = this.state.privateIp
+        const publicip = this.state.publicIp
+        const on = this.state.on
         return (
-            <div className='server'>
+            <React.Fragment>
+            {
+                loading ?
+               <Loader  isloading={this.changeloading}/>
+            : <div className='server'>
                 
-                <p>el server esta encendido</p>
-                <div className='info'>
-                    <button className='btn btn-danger' onClick={this.handlechanges}>apagar</button>
-                </div>
-                
+            <p>el server esta encendido</p>
+            <div className='info'>
+                <button className='btn btn-danger' onClick={this.handlechanges}>apagar</button>
             </div>
+            
+        </div>
+            }
+            </React.Fragment>
         )
     }
 }
