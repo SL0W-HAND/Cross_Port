@@ -9,11 +9,12 @@ export class server_on extends Component {
         super(props)
         this.handlechanges = this.handlechanges.bind(this)
         this.changeloading = this.changeloading.bind(this)
+        this.changeServerState = this.changeServerState.bind(this)
         this.state = {
             loading: true,
             publicIp: false,
             privateIp: false,
-            on: true
+            
         }
     }
 
@@ -43,23 +44,35 @@ export class server_on extends Component {
         this.props.changeServerOn(false)
     }
 
-    changeloading(e){
-        this.setState({loading: e})
+    changeServerState(e){
+        if(e === false){
+            this.props.changeServerOn(false)
+        }
     }
 
+    changeloading(data,load){
+        //modificar parea los demas componentes
+        this.setState({
+            loading: load,
+            publicIp: data.publicIp,
+            privateIp: data.privateIp,
+        })
+    }
+
+    
+
     render() {
-        const loading = this.state.loading
-        const privateip = this.state.privateIp
-        const publicip = this.state.publicIp
-        const on = this.state.on
+        const loading = this.state.loading //esta se esta comparano no lo borres
+        const privateIp = this.state.privateIp
+        const publicIp = this.state.publicIp
         return (
             <React.Fragment>
             {
                 loading ?
-               <Loader  isloading={this.changeloading}/>
+               <Loader  server={this.changeServerState} isloading={this.changeloading}/>
             : <div className='server'>
                 
-            <p>el server esta encendido</p>
+            <p>el server esta encendido publica:{publicIp} privada {privateIp}</p>
             <div className='info'>
                 <button className='btn btn-danger' onClick={this.handlechanges}>apagar</button>
             </div>
