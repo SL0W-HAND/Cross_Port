@@ -24,10 +24,9 @@ export class files extends Component {
       };
   
       listen = async () => {
-          
-  
+
           electron.ipcRenderer.on('return-name',(e, arg) => {
-              
+              console.log(arg)
               this.setState({
                   name : arg
               })    
@@ -50,8 +49,9 @@ export class files extends Component {
           var counter = 0;
           var arr = this.state.name;
           arr.map((register) => {
-              if(file.name === file.name){
+              if(file.name === register.name){
                   arr.splice(counter,1)
+                  
                   electron.ipcRenderer.send('update-files',arr);
               }else{
                   counter++;
@@ -78,7 +78,7 @@ export class files extends Component {
                                 <img className='card_image' src={archive}/>
                             </figure>
                             <p key={i} className='files card-text'> {doc.name}</p>
-                            <button  className='cardbutton btn btn-danger' onClick={() => this.deleate(doc)}>X</button>
+                            <button className='cardbutton btn btn-danger' onClick={() => this.deleate(doc)}>X</button>
                         </div>        
                     )}
                 </div>

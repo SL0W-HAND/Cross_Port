@@ -65,6 +65,7 @@ export class server_on extends Component {
         const loading = this.state.loading //esta se esta comparano no lo borres
         const privateIp = this.state.privateIp
         const publicIp = this.state.publicIp
+        //quiza aga otro componente
         return (
             <React.Fragment>
             {

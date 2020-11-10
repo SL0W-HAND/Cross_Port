@@ -90,7 +90,8 @@ electron.ipcMain.on('open-dialog', async () =>{
 
                 files.push({
                     'path':element,
-                    'name':path.basename(element)
+                    'name':path.basename(element),
+                    'extension':path.extname(element)
                 });
     
             });
@@ -140,9 +141,9 @@ electron.ipcMain.on('ip_adress_req', async () => {
           })
     })
 
-    privateIp.then(() => {
+    privateIp.then(
         publicIp
-    }).then(() => {
+    ).then(() => {
         mainWindow.webContents.send('ip_adress_res',iPadress)
     }).catch(() => {
         mainWindow.webContents.send('ip_adress_res',iPadress)
