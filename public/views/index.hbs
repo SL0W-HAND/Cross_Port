@@ -1,7 +1,22 @@
 <H1>example</H1>
 
+
 <ol>
-{{#each documents}}
-    <li> {{ this.name }}</li>
-{{/each}}
+
+{{#if documents}}
+    {{#each documents}}
+        <li> {{ this.name }}{{this.path}}{{this.extension}}</li>
+        {{#if (isPdf this.extension)}}
+            <form action="/view/{{this.name}}" method="GET">
+                <button class="btn btn-danger btn-block btn-sm" type="submit">see</button>  
+            </form>
+        {{/if }}
+        <form action="/download/{{this.name}}" method="GET">
+        <button class="btn btn-danger btn-block btn-sm" type="submit">download</button>  
+        </form>
+    {{/each}}
+{{else}}
+    <p>Nothing to show</p>
+{{/if}}
+
 </ol>

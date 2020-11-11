@@ -51,12 +51,16 @@ export class server_on extends Component {
     }
 
     changeloading(data,load){
-        //modificar parea los demas componentes
+        
         this.setState({
             loading: load,
             publicIp: data.publicIp,
             privateIp: data.privateIp,
         })
+        if (load === false) {
+                electron.ipcRenderer.send('burn-baby')
+            
+        }
     }
 
     
