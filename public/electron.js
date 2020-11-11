@@ -30,7 +30,16 @@ server.engine('.hbs',exphbs({
     defaultLayout:'main',
     layoutsDir:path.join(server.get('views'),'layouts'),
     partialsDir:path.join(server.get('views'),'partials'),
-    extname:'.hbs'
+    extname:'.hbs',
+    helpers: {
+        isPdf: function(value) {
+            if (value == '.pdf') {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
 
   }));
 server.set('view engine','.hbs');
@@ -151,7 +160,9 @@ electron.ipcMain.on('ip_adress_req', async () => {
 
 })
 
-electron.ipcMain.on('burn-baby', (e,arg) => {
+
+
+electron.ipcMain.on('burn-baby', () => {
     console.log( 'burn' );
     server.get('/', (req, res) => {
         res.render('index',{
@@ -159,6 +170,35 @@ electron.ipcMain.on('burn-baby', (e,arg) => {
             documents: files
         });
       });
+
+    server.get('/download/:id', async (req, res) => {
+        console.log(req.params['id']);
+        
+        var pathResponse
+        pathResponse = files.find(element => element.name == req.params['id']);
+        console.log(pathResponse.path);
+
+        res.download(pathResponse.path,pathResponse.name,function (err){
+            if (err) {
+                res.send('ubo un error')
+            } else {
+                
+            }
+        })
+      });
+
+      server.get('/view/:id', async(req,res) => {
+        var pathResponse
+        pathResponse = files.find(element =>  element.name == req.params['id']);
+        console.log(pathResponse.path)
+        
+        fs.readFile(pathResponse.path, (err,data) => {
+            res.contentType("application/pdf");
+            res.send(data);
+        })
+        
+      });
+
       server.listen(port, () => {
         console.log(`Example ap ap listeningt http://localhost:${port}`)
       });
@@ -167,7 +207,7 @@ electron.ipcMain.on('burn-baby', (e,arg) => {
 
 electron.ipcMain.on('update-files',(e,data)=>{
     files = data;
-})
+});
 /*
 .catch(
     mainWindow.webContents.send('network_name','error')
