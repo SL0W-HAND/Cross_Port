@@ -9,21 +9,13 @@ const isDev = require("electron-is-dev");
 
 var fork = require("child_process").fork
 
-
-
 let mainWindow;
 
-
-//experiments
 const wifiName = require('wifi-name');
 var network = require('network');
 
 
-
 require('electron-reload')(__dirname);
-
-//i dont know why thats didn't work 
-
 
 
 function createWindow() {
@@ -66,6 +58,10 @@ let options = {
      name: 'All Files', 
      extensions: ['*'] 
 };
+
+electron.ipcMain.on('get-files', async () => {
+    mainWindow.webContents.send('return-name', files);
+})
 
 electron.ipcMain.on('open-dialog', async () =>{
     var result;
@@ -153,8 +149,6 @@ electron.ipcMain.on('burn-baby', () => {
  })
 });
 
-
-
 electron.ipcMain.on('update-files',(e,data)=>{
     files = data;
 });
@@ -164,14 +158,8 @@ electron.ipcMain.on('update-files',(e,data)=>{
 );*/
 electron.ipcMain.on('network_name_req',() => {
     wifiName().then(name => {
-        console.log(name);   
-       
         mainWindow.webContents.send('network_name_response',name)
-        //=> 'wu-tang lan'
     }).catch(err => {
         mainWindow.webContents.send('network_name_response',false)
     })
-})
-
-
-
+});
