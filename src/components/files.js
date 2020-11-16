@@ -20,6 +20,7 @@ export class files extends Component {
     };
 
     componentDidMount(){
+        electron.ipcRenderer.send('get-files')
         this.listen()
       };
   

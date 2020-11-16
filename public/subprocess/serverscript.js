@@ -30,6 +30,9 @@ server.set('view engine','.hbs');
 process.on("message" ,(message) => {
 
     if (message.is_on == true) {
+
+        const files = message.files
+
         server.get('/', (req, res) => {
             res.render('index',{
                 title:'server',
@@ -68,6 +71,7 @@ process.on("message" ,(message) => {
           server.listen(port);
     
     } else {
+        console.log('apagar')
         process.exit(0);
     }
 })
