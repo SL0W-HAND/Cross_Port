@@ -42,6 +42,7 @@ export class server_on extends Component {
 
     handlechanges(){
         this.props.changeServerOn(false)
+        electron.ipcRenderer.send('turn-off-server')
     }
 
     changeServerState(e){
