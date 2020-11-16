@@ -7,42 +7,22 @@ const path = require("path");
 const fs = require('fs');
 const isDev = require("electron-is-dev");
 
+var fork = require("child_process").fork
 
-const express = require('express')
-const server = express();
-const port = 8989;
+
+
 let mainWindow;
 
 
 //experiments
 const wifiName = require('wifi-name');
 var network = require('network');
-var exphbs  = require('express-handlebars');
+
 
 
 require('electron-reload')(__dirname);
 
 //i dont know why thats didn't work 
-
-server.set('port',port)
-server.set('views', path.join(__dirname,'views'));
-server.engine('.hbs',exphbs({
-    defaultLayout:'main',
-    layoutsDir:path.join(server.get('views'),'layouts'),
-    partialsDir:path.join(server.get('views'),'partials'),
-    extname:'.hbs',
-    helpers: {
-        isPdf: function(value) {
-            if (value == '.pdf') {
-                return true
-            } else {
-                return false
-            }
-        }
-    }
-
-  }));
-server.set('view engine','.hbs');
 
 
 
@@ -163,47 +143,17 @@ electron.ipcMain.on('ip_adress_req', async () => {
 
 
 electron.ipcMain.on('burn-baby', () => {
+    var serverScript = fork(path.join(__dirname, './subprocess/serverscript.js'))
     console.log( 'burn' );
-    server.get('/', (req, res) => {
-        res.render('index',{
-            title:'server',
-            documents: files
-        });
-      });
+   serverScript.send({"is_on":true , "files":files})
 
-    server.get('/download/:id', async (req, res) => {
-        console.log(req.params['id']);
-        
-        var pathResponse
-        pathResponse = files.find(element => element.name == req.params['id']);
-        console.log(pathResponse.path);
-
-        res.download(pathResponse.path,pathResponse.name,function (err){
-            if (err) {
-                res.send('ubo un error')
-            } else {
-                
-            }
-        })
-      });
-
-      server.get('/view/:id', async(req,res) => {
-        var pathResponse
-        pathResponse = files.find(element =>  element.name == req.params['id']);
-        console.log(pathResponse.path)
-        
-        fs.readFile(pathResponse.path, (err,data) => {
-            res.contentType("application/pdf");
-            res.send(data);
-        })
-        
-      });
-
-      server.listen(port, () => {
-        console.log(`Example ap ap listeningt http://localhost:${port}`)
-      });
-    //mainWindow.webContents.send('return-exe', '');
+   electron.ipcMain.on('turn-off-server', () => { 
+    serverScript.send({"is_on":false})
+    // var turnOff = fork(path.join(__dirname, './subprocess/turn-off-process.js'));
+ })
 });
+
+
 
 electron.ipcMain.on('update-files',(e,data)=>{
     files = data;
