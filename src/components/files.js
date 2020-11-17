@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import './styles/files.css';
 import add_file_icon from './assets/file-plus.svg';
 import minus_file_icon from './assets/file-minus.svg';
-import archive from './assets/archive.svg'
+import pdfIcon from './assets/pdf.svg'
+import videoIcon from './assets/film.svg'
+import imageIcon from './assets/image.svg'
+import musicIcon from './assets/headphones.svg'
+import defaultIcon from './assets/file-text.svg'
 
 const electron = window.require('electron');
 
@@ -59,8 +63,23 @@ export class files extends Component {
               }
           })
           this.setState({name:arr})
-          
-          
+      }
+
+      renderSwitch(param) {
+        switch(param) {
+            case '.pdf':
+                return pdfIcon;
+            case '.mp4':
+                return videoIcon;
+            case '.mp3':
+                return musicIcon;    
+            case '.png':
+                return imageIcon;
+            case '.jpg':
+                return imageIcon;    
+            default:
+                return defaultIcon;
+        }
       }
  
 
@@ -77,7 +96,7 @@ export class files extends Component {
                         <div className='card mb-3 file-card'>
                             <div className='file-info'>
                                 <figure>
-                                    <img className='card_image' src={archive}/>
+                                    <img className='card_image' src={this.renderSwitch(doc.extension)}/>
                                 </figure>
                                 <span key={i} className='file-name'> {doc.name}</span>
                             </div> 

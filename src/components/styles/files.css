@@ -44,7 +44,27 @@ button.reset{
     background-color:#EBEBEB;
     border-radius: 20px;
 }
-
+/* width */
+.file-container::-webkit-scrollbar {
+    width: 7px;
+}
+  
+  /* Track */
+.file-container::-webkit-scrollbar-track {
+    box-shadow: grey; 
+    border-radius: 10px;
+}
+   
+  /* Handle */
+.file-container::-webkit-scrollbar-thumb {
+    background: gray; 
+    border-radius: 10px;
+}
+  
+  /* Handle on hover */
+.file-container::-webkit-scrollbar-thumb:hover {
+    background: #5F6A6A; 
+}
 div.file-card{
     height: 50px;
     border-radius: 20px;
@@ -78,18 +98,3 @@ div.file-info{
     margin-right: 20px;
     margin-top: 10px;
 }
-
-
-/*
-::-webkit-scrollbar{
-    width: 0.75rem;
-}
-
-::-webkit-scrollbar-thumb{
-    border-radius: 1%;
-}
-
-::-webkit-scrollbar {
-    width: 12px;
-}
- */
