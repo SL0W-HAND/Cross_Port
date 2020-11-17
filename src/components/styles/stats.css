@@ -1,13 +1,30 @@
 .stats_container{
     width: 20vw; 
-   
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    text-align: center;
+}
 
+.network_name span{
+    color:black;
+    margin-bottom: 10px;
+}
+
+.server-button{
+    background-color:#d11141;
+    height: 40px;    
+    padding: 8px 20px;
+    border-radius: 25px;
+    margin: 15px;
+    border-style: none;
+    color: white;
+}
+
+.server-button:focus{
+    outline: none;
 }
 
 .wifi-icon{
     width: 70px;
-}
+}  

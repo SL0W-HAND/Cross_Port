@@ -69,17 +69,19 @@ export class files extends Component {
             <div className='file-component'>
 
                 <div className='button_container'>
-                    <button className='buttons add' onClick={this.onOpen}>add files <img src={add_file_icon} alt='add file'/></button>
-                    <button className='buttons reset ' onClick={this.reset}>Restrt files <img src={minus_file_icon}/></button>
+                    <button className='buttons add' onClick={this.onOpen}>Add files <img src={add_file_icon} alt='add file'/></button>
+                    <button className='buttons reset ' onClick={this.reset}>Restart files <img src={minus_file_icon}/></button>
                 </div>    
                 <div className='file-container'>
                     {this.state.name.map((doc,i) =>
-                        <div className='card row mb-3 '>
-                            <figure>
-                                <img className='card_image' src={archive}/>
-                            </figure>
-                            <p key={i} className='files card-text'> {doc.name}</p>
-                            <button className='cardbutton btn btn-danger' onClick={() => this.deleate(doc)}>X</button>
+                        <div className='card mb-3 file-card'>
+                            <div className='file-info'>
+                                <figure>
+                                    <img className='card_image' src={archive}/>
+                                </figure>
+                                <span key={i} className='file-name'> {doc.name}</span>
+                            </div> 
+                            <button className='deleate-button' onClick={() => this.deleate(doc)}>X</button>
                         </div>        
                     )}
                 </div>

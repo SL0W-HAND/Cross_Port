@@ -10,23 +10,73 @@
     flex-direction: row;
     justify-content: flex-start;
     height: 20vh;
+    min-height: 90px;
+    padding-top: 3%;
+    padding-left: 3%;
 }
 
 button.buttons{
-padding: 8px 20px;
-border-radius: 25px;
-margin: 15px;
+    
+    height: 40px;    
+    padding: 8px 20px;
+    border-radius: 25px;
+    margin: 15px;
+    border-style: none;
+    color: white;
 }
 
-.add{
+button.buttons:focus{
+    outline: none;
+}
+
+button.add{
     background-color:#00aedb;
 }
-.reset{
+
+button.reset{
     background-color:#d11141;
 }
 
 .file-container{
     height: 80vh;
+    overflow:auto;
+    margin: 0 2%;
+    background-color:#EBEBEB;
+    border-radius: 20px;
+}
+
+div.file-card{
+    height: 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.file-info{
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    color: black;
+}
+
+.file-info figure img{
+    height: 25px;
+    margin-left: 7px;
+    margin-right: 20px;
+}
+ 
+
+.deleate-button{
+    color: black;
+    background-color: white;
+    border:none;
+    height: 30px;
+    margin-right: 20px;
+    margin-top: 10px;
 }
 
 
