@@ -25,6 +25,8 @@ server.engine('.hbs',exphbs({
   }));
 server.set('view engine','.hbs');
 
+server.use(express.static(path.join(__dirname , '../views')))
+
 
 
 process.on("message" ,(message) => {
