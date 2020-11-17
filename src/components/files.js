@@ -62,15 +62,15 @@ export class files extends Component {
           
           
       }
-
+ 
 
     render() {
         return (
             <div className='file-component'>
 
                 <div className='button_container'>
-                    <button className='btn btn-primary ' onClick={this.onOpen}>add files <img src={add_file_icon} alt='add file'/></button>
-                    <button className='btn btn-danger restart ' onClick={this.reset}>Restrt files <img src={minus_file_icon}/></button>
+                    <button className='buttons add' onClick={this.onOpen}>add files <img src={add_file_icon} alt='add file'/></button>
+                    <button className='buttons reset ' onClick={this.reset}>Restrt files <img src={minus_file_icon}/></button>
                 </div>    
                 <div className='file-container'>
                     {this.state.name.map((doc,i) =>
