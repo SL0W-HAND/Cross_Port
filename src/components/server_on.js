@@ -73,17 +73,15 @@ export class server_on extends Component {
         //quiza aga otro componente
         return (
             <React.Fragment>
-            {
-                loading ?
-               <Loader  server={this.changeServerState} isloading={this.changeloading}/>
-            : <div className='server'>
-                
-            <p>el server esta encendido publica:{publicIp} privada {privateIp}</p>
-            <div className='info'>
-                <button className='btn btn-danger' onClick={this.handlechanges}>apagar</button>
-            </div>
-            
-        </div>
+            { loading ?
+                <Loader  server={this.changeServerState} isloading={this.changeloading}/>
+            : 
+                <div className='server'> 
+                    <p>el server esta encendido publica:{publicIp} privada {privateIp}</p>
+                    <div className='info'>
+                        <button className='btn btn-danger' onClick={this.handlechanges}>apagar</button>
+                    </div>
+                </div>
             }
             </React.Fragment>
         )

@@ -1,0 +1,82 @@
+:root{
+    --font-size:20px;
+    --font-size-2:16px;
+    --font-1:sans-serif, Helvetica ,Arial;
+    --font-2:Helvetica;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body header{
+    display: flex;
+    align-items: center;
+    padding-top: 5%;
+    justify-content: center;
+}
+
+.title{
+    font-family: var(--font-1);
+    font-size: var(--font-size);
+    font-weight: bold;
+    margin-right: 3%;
+}
+
+.no-files{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.no-files span{
+    font-family: var(--font-2);
+    position: absolute;
+    top: 45%; 
+}
+
+.files{
+    margin-top: 4%;
+    padding: 4%;
+    max-width: 650px;
+    margin: auto;
+}
+
+.card {
+    margin-left: 5px;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content:space-between;
+    align-items: center;
+}
+
+.card h3 {
+    font-family: var(--font-2);
+    font-size: var(--font-size-2);
+   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  resize: horizontal;
+  max-width: 50vw;
+}
+
+.card .buttons form{
+display: inline-block;
+margin-left: 3px;
+margin-right: 3px;
+margin-top: 5px;
+}
+
+.get-button{
+    background-color: white;
+    border:none;
+}
+
+.get-button:focus{
+    outline: none;
+}
