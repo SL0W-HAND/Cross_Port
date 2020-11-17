@@ -6,9 +6,11 @@
 
 .App {
   /* Comentario */
-  background-color: #282c34;
+  background-color: #F4F7F6;
   min-height: 600px;
   min-width: 400px;
   display: flex;
   color: white;
+  font-family: sans-serif, Helvetica, Arial;
 }
+ 
