@@ -68,14 +68,15 @@ export class stats extends Component {
                         </div>
                         <div className='button_on'>
                             {networkName
-                            ?<button className='btn btn-danger' onClick={this.handleOnClick}>
-                            server
+                            ?<button className='server-button' onClick={this.handleOnClick}>
+                            Turn on
                         </button>
-                        :<button className='btn btn-danger' onClick={this.checkConection}>retry</button>
+                        :<button className='server-button' onClick={this.checkConection}>Retry</button>
                             }
                             
                         
                         </div>
+                    
                 </div>      
         );
     };

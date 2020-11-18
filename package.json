@@ -1,11 +1,11 @@
 {
   "description": "<your project description>",
-"author": "<author of app>",
-"build": {
-"appId": "<com.your_app>"
-},
-"main": "public/electron.js",
-"homepage": "./",
+  "author": "<author of app>",
+  "build": {
+    "appId": "Cross Port"
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
   "name": "cross_port",
   "version": "0.1.0",
   "private": true,
@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "network": "^0.5.0",
+    "qrcode.react": "^1.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.0",

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './styles/loader.css'
 const electron = window.require('electron');
 
 export class loading extends Component {
@@ -30,8 +31,8 @@ export class loading extends Component {
         
         //mandar a preguntar por conexxion 
         return (
-            <div>
-                <p>loading...</p>
+            <div class="loader-container">
+                <div class="lds"><div></div><div></div><div></div></div>
             </div>
         )
     }

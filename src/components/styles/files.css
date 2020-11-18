@@ -1,66 +1,100 @@
-.files{
-    color:black;
-    display: inline-block;
+.file-component{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 80vw;
 }
 
-.file-component{
-   
-    padding:3px; 
-    /*border:  3px solid white;*/
-    border-color: blanchedalmond;   
-    width: 80vw;
-   /* height: 90vh;*/
-    min-height: 680px;
-    min-width: 720px;
-}
 .button_container{
-    margin: 2%;
     display: flex;
-    height: 10vh;
-    align-items: center;
+    flex-direction: row;
     justify-content: flex-start;
+    height: 20vh;
+    min-height: 90px;
+    padding-top: 3%;
+    padding-left: 3%;
+}
+
+button.buttons{
+    
+    height: 40px;    
+    padding: 8px 20px;
+    border-radius: 25px;
+    margin: 15px;
+    border-style: none;
+    color: white;
+}
+
+button.buttons:focus{
+    outline: none;
+}
+
+button.add{
+    background-color:#00aedb;
+}
+
+button.reset{
+    background-color:#d11141;
 }
 
 .file-container{
-    height:80vh;
+    height: 80vh;
     overflow:auto;
     margin: 0 2%;
-    border-radius: 1%;
-    border: 1px solid white;
-    
+    background-color:#EBEBEB;
+    border-radius: 20px;
 }
-
-.card{
-    min-width: 200px;
+/* width */
+.file-container::-webkit-scrollbar {
+    width: 7px;
+}
+  
+  /* Track */
+.file-container::-webkit-scrollbar-track {
+    box-shadow: grey; 
+    border-radius: 10px;
+}
+   
+  /* Handle */
+.file-container::-webkit-scrollbar-thumb {
+    background: gray; 
+    border-radius: 10px;
+}
+  
+  /* Handle on hover */
+.file-container::-webkit-scrollbar-thumb:hover {
+    background: #5F6A6A; 
+}
+div.file-card{
+    height: 50px;
+    border-radius: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    height: 50px;
 }
 
-.card_image{
-    height: 35px;
-   margin-top: 15px;
-   margin-left: 15px;
-}
-.restart{
-    margin-left: 16px;
-}
-.cardbutton{
-margin-right: 10px;
+div.file-info{
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    color: black;
 }
 
-/*
-::-webkit-scrollbar{
-    width: 0.75rem;
+.file-info figure img{
+    height: 25px;
+    margin-left: 7px;
+    margin-right: 20px;
 }
+ 
 
-::-webkit-scrollbar-thumb{
-    border-radius: 1%;
+.deleate-button{
+    color: black;
+    background-color: white;
+    border:none;
+    height: 30px;
+    margin-right: 20px;
+    margin-top: 10px;
 }
-
-::-webkit-scrollbar {
-    width: 12px;
-}
- */
