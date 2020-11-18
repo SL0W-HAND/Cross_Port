@@ -68,8 +68,9 @@ export class server_on extends Component {
 
     render() {
         const loading = this.state.loading //esta se esta comparano no lo borres
-        const privateIp = this.state.privateIp
-        const publicIp = this.state.publicIp
+        const privateIpAdress = String(this.state.privateIp)+':8989'
+       const publicIpAdress = String(this.state.publicIp)+':8989'
+        var QRCode = require('qrcode.react');
         //quiza aga otro componente
         return (
             <React.Fragment>
@@ -77,10 +78,21 @@ export class server_on extends Component {
                 <Loader  server={this.changeServerState} isloading={this.changeloading}/>
             : 
                 <div className='server'> 
-                    <p>el server esta encendido publica:{publicIp} privada {privateIp}</p>
-                    <div className='info'>
-                        <button className='btn btn-danger' onClick={this.handlechanges}>apagar</button>
+                    <span className='info'>The server is runing</span>
+                    <div className='qr_container'>
+                        <div className='private_adress'>
+                            <span>In your local network</span>
+                            <QRCode value={privateIpAdress}/>
+                            <span>{privateIpAdress}</span>
+                        </div>
+                        <div className='public_adress'>
+                            <span>On internet</span>
+                            <QRCode value={publicIpAdress}/>
+                            <span>{publicIpAdress}</span>
+                        </div>
                     </div>
+                    <button className='turn-off-button' onClick={this.handlechanges}>Turn off</button>
+                    
                 </div>
             }
             </React.Fragment>
