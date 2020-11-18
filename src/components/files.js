@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import './styles/files.css';
 import add_file_icon from './assets/file-plus.svg';
 import minus_file_icon from './assets/file-minus.svg';
-import pdfIcon from './assets/pdf.svg'
-import videoIcon from './assets/film.svg'
-import imageIcon from './assets/image.svg'
-import musicIcon from './assets/headphones.svg'
-import defaultIcon from './assets/file-text.svg'
+import pdfIcon from './assets/pdf.svg';
+import videoIcon from './assets/film.svg';
+import imageIcon from './assets/image.svg';
+import musicIcon from './assets/headphones.svg';
+import defaultIcon from './assets/file-text.svg';
 
 const electron = window.require('electron');
 
@@ -16,38 +16,36 @@ export class files extends Component {
         super(props);
         this.onOpen = this.onOpen.bind(this);
         this.reset = this.reset.bind(this);
-        this.deleate = this.deleate.bind(this)
+        this.deleate = this.deleate.bind(this);
         this.state = {
             name:[]
-        }
+        };
         
     };
 
     componentDidMount(){
-        electron.ipcRenderer.send('get-files')
-        this.listen()
+        electron.ipcRenderer.send('get-files');
+        this.listen();
       };
   
       listen = async () => {
 
           electron.ipcRenderer.on('return-name',(e, arg) => {
-              console.log(arg)
               this.setState({
                   name : arg
-              })    
-          })
+              });    
+          });
       };
   
       onOpen(){
-          electron.ipcRenderer.send('open-dialog')
+          electron.ipcRenderer.send('open-dialog');
       };
 
       reset(){
-        
         this.setState({
             name : []
-        })
-        electron.ipcRenderer.send('update-files',[])
+        });
+        electron.ipcRenderer.send('update-files',[]);
       };
 
       deleate = (file) => {
@@ -55,15 +53,14 @@ export class files extends Component {
           var arr = this.state.name;
           arr.map((register) => {
               if(file.name === register.name){
-                  arr.splice(counter,1)
-                  
+                  arr.splice(counter,1);
                   electron.ipcRenderer.send('update-files',arr);
               }else{
                   counter++;
-              }
-          })
-          this.setState({name:arr})
-      }
+              };
+          });
+          this.setState({name:arr});
+      };
 
       renderSwitch(param) {
         switch(param) {
@@ -79,8 +76,8 @@ export class files extends Component {
                 return imageIcon;    
             default:
                 return defaultIcon;
-        }
-      }
+        };
+      };
  
 
     render() {
@@ -89,14 +86,14 @@ export class files extends Component {
 
                 <div className='button_container'>
                     <button className='buttons add' onClick={this.onOpen}>Add files <img src={add_file_icon} alt='add file'/></button>
-                    <button className='buttons reset ' onClick={this.reset}>Restart files <img src={minus_file_icon}/></button>
+                    <button className='buttons reset ' onClick={this.reset}>Restart files <img src={minus_file_icon} alt='reset'/></button>
                 </div>    
                 <div className='file-container'>
                     {this.state.name.map((doc,i) =>
                         <div className='card mb-3 file-card'>
                             <div className='file-info'>
                                 <figure>
-                                    <img className='card_image' src={this.renderSwitch(doc.extension)}/>
+                                    <img className='card_image' alt='file extension' src={this.renderSwitch(doc.extension)}/>
                                 </figure>
                                 <span key={i} className='file-name'> {doc.name}</span>
                             </div> 

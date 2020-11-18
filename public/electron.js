@@ -2,12 +2,10 @@ const electron = require("electron");
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const {Menu, ipcMain, dialog} = require("electron");
-const url = require("url");
 const path = require("path");
-const fs = require('fs');
 const isDev = require("electron-is-dev");
 
-var fork = require("child_process").fork
+var fork = require("child_process").fork;
 
 let mainWindow;
 
@@ -15,20 +13,18 @@ const wifiName = require('wifi-name');
 var network = require('network');
 
 
-require('electron-reload')(__dirname);
-
-
 function createWindow() {
     mainWindow = new BrowserWindow({ 
         minWidth: 900, 
-        minHeight: 680, 
+        minHeight: 680,
+        icon: path.join(__dirname ,'./favicon.ico'), 
         webPreferences: {
             nodeIntegration: true,
             nodeIntegrationInWorker: true
 
     }});
 
-    mainWindow.maximize()
+    mainWindow.maximize();
     Menu.setApplicationMenu(null);
 
     mainWindow.loadURL( isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`);
@@ -52,7 +48,7 @@ app.on("activate", () => {
 var files = [];
 
 let options = {
-    title : "Custom title bar", 
+    title : "Select files", 
         
     buttonLabel : "Select",
     
@@ -68,11 +64,11 @@ electron.ipcMain.on('get-files', async () => {
 electron.ipcMain.on('open-dialog', async () =>{
     var result;
 
-    result = await dialog.showOpenDialog(mainWindow,options)
+    result = await dialog.showOpenDialog(mainWindow,options);
 
     if (result.canceled == false){
         
-        //falta cancelar repetidos
+        //missing cancel repeated
          result.filePaths.forEach((element) => {
 
                 files.push({
@@ -86,17 +82,14 @@ electron.ipcMain.on('open-dialog', async () =>{
 
         mainWindow.webContents.send('return-name', files);
 
-    }
-
-
-   // console.log(files);
+    };
 });
-
 
 var iPadress = {
     privateIp: '',
     publicIp: ''
-}
+};
+
 electron.ipcMain.on('ip_adress_req', async () => {
     
     const publicIp = new Promise((resolve,reject) => {
@@ -104,50 +97,46 @@ electron.ipcMain.on('ip_adress_req', async () => {
     
             //mainWindow.webContents.send('publicIp',err || ip)
             if (err){
-                iPadress.publicIp = false
-                resolve()
+                iPadress.publicIp = false;
+                resolve();
             }else{
-                iPadress.publicIp = ip
-                resolve()
-            }
-          })
-    }) 
+                iPadress.publicIp = ip;
+                resolve();
+            };
+          });
+    });
 
     const privateIp = new Promise((resolve,reject) => {
         network.get_private_ip(function(err, ip) {
-    
-            //mainWindow.webContents.send('privateIp',err || ip)
             if (err){
-                iPadress.privateIp = false
-                reject()
+                iPadress.privateIp = false;
+                reject();
             }else{
-                iPadress.privateIp = ip
-                console.log('ip')
-                resolve()    
-            }
-          })
-    })
+                iPadress.privateIp = ip;
+                resolve();
+            };
+          });
+    });
 
     privateIp.then(
         publicIp
     ).then(() => {
-        mainWindow.webContents.send('ip_adress_res',iPadress)
+        mainWindow.webContents.send('ip_adress_res',iPadress);
     }).catch(() => {
-        mainWindow.webContents.send('ip_adress_res',iPadress)
-    })
+        mainWindow.webContents.send('ip_adress_res',iPadress);
+    });
 
-})
+});
 
 
 
 electron.ipcMain.on('burn-baby', () => {
     var serverScript = fork(path.join(__dirname, './subprocess/serverscript.js'));
-    console.log( 'burn' );
     serverScript.send({"is_on":true , "files":files});
 
     electron.ipcMain.on('turn-off-server', () => { 
     serverScript.send({"is_on":false});
- })
+ });
 });
 
 electron.ipcMain.on('update-files',(e,data)=>{
@@ -159,8 +148,8 @@ electron.ipcMain.on('update-files',(e,data)=>{
 );*/
 electron.ipcMain.on('network_name_req',() => {
     wifiName().then(name => {
-        mainWindow.webContents.send('network_name_response',name)
+        mainWindow.webContents.send('network_name_response',name);
     }).catch(err => {
-        mainWindow.webContents.send('network_name_response',false)
-    })
+        mainWindow.webContents.send('network_name_response',false);
+    });
 });

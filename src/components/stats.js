@@ -1,23 +1,23 @@
-import React, { Component } from 'react'
-import './styles/stats.css'
-import wifi_icon from './assets/wifi.svg'
-import wifi_off_icon from './assets/wifi-off.svg'
+import React, { Component } from 'react';
+import './styles/stats.css';
+import wifi_icon from './assets/wifi.svg';
+import wifi_off_icon from './assets/wifi-off.svg';
 
 const electron = window.require('electron');
 
 export class stats extends Component {
     constructor(props){
-        super(props)
-        this.handleOnClick = this.handleOnClick.bind(this)
-        this.checkConection = this.checkConection.bind(this)
+        super(props);
+        this.handleOnClick = this.handleOnClick.bind(this);
+        this.checkConection = this.checkConection.bind(this);
         this.state = {
             networkName:[],
-        }
+        };
     };
 
     componentDidMount(){
-        electron.ipcRenderer.send('network_name_req')
-        this.listen()
+        electron.ipcRenderer.send('network_name_req');
+        this.listen();
     };
     
     listen = async () => {
@@ -36,18 +36,16 @@ export class stats extends Component {
     };
 
     handleOnClick(){
-         this.props.changeServerOn(true);        
-         //electron.ipcRenderer.send('burn-baby',ff);     
+         this.props.changeServerOn(true);            
     };
 
     checkConection(){
         electron.ipcRenderer.send('network_name_req');
         this.listen();
-    }
+    };
 
     render() {
-        //const temperature = this.props.server_on;
-        const networkName = this.state.networkName
+        const networkName = this.state.networkName;
         return (
            
                 <div className='stats_container'>
