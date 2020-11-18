@@ -135,7 +135,8 @@ electron.ipcMain.on('burn-baby', () => {
     serverScript.send({"is_on":true , "files":files});
 
     electron.ipcMain.on('turn-off-server', () => { 
-    serverScript.send({"is_on":false});
+    //serverScript.send({"is_on":false});
+        serverScript.kill();
  });
 });
 
