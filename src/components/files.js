@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import './styles/files.css';
 import add_file_icon from './assets/file-plus.svg';
 import minus_file_icon from './assets/file-minus.svg';
-import archive from './assets/archive.svg'
+import pdfIcon from './assets/pdf.svg'
+import videoIcon from './assets/film.svg'
+import imageIcon from './assets/image.svg'
+import musicIcon from './assets/headphones.svg'
+import defaultIcon from './assets/file-text.svg'
 
 const electron = window.require('electron');
 
@@ -59,27 +63,44 @@ export class files extends Component {
               }
           })
           this.setState({name:arr})
-          
-          
       }
 
+      renderSwitch(param) {
+        switch(param) {
+            case '.pdf':
+                return pdfIcon;
+            case '.mp4':
+                return videoIcon;
+            case '.mp3':
+                return musicIcon;    
+            case '.png':
+                return imageIcon;
+            case '.jpg':
+                return imageIcon;    
+            default:
+                return defaultIcon;
+        }
+      }
+ 
 
     render() {
         return (
             <div className='file-component'>
 
                 <div className='button_container'>
-                    <button className='btn btn-primary ' onClick={this.onOpen}>add files <img src={add_file_icon} alt='add file'/></button>
-                    <button className='btn btn-danger restart ' onClick={this.reset}>Restrt files <img src={minus_file_icon}/></button>
+                    <button className='buttons add' onClick={this.onOpen}>Add files <img src={add_file_icon} alt='add file'/></button>
+                    <button className='buttons reset ' onClick={this.reset}>Restart files <img src={minus_file_icon}/></button>
                 </div>    
                 <div className='file-container'>
                     {this.state.name.map((doc,i) =>
-                        <div className='card row mb-3 '>
-                            <figure>
-                                <img className='card_image' src={archive}/>
-                            </figure>
-                            <p key={i} className='files card-text'> {doc.name}</p>
-                            <button className='cardbutton btn btn-danger' onClick={() => this.deleate(doc)}>X</button>
+                        <div className='card mb-3 file-card'>
+                            <div className='file-info'>
+                                <figure>
+                                    <img className='card_image' src={this.renderSwitch(doc.extension)}/>
+                                </figure>
+                                <span key={i} className='file-name'> {doc.name}</span>
+                            </div> 
+                            <button className='deleate-button' onClick={() => this.deleate(doc)}>X</button>
                         </div>        
                     )}
                 </div>
