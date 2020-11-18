@@ -19,18 +19,20 @@ require('electron-reload')(__dirname);
 
 
 function createWindow() {
-mainWindow = new BrowserWindow({ 
-    width: 900, 
-    height: 680, 
-    webPreferences: {
-        nodeIntegration: true,
-        nodeIntegrationInWorker: true
+    mainWindow = new BrowserWindow({ 
+        minWidth: 900, 
+        minHeight: 680, 
+        webPreferences: {
+            nodeIntegration: true,
+            nodeIntegrationInWorker: true
 
-  }});
+    }});
 
+    mainWindow.maximize()
+    Menu.setApplicationMenu(null);
 
-mainWindow.loadURL( isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`);
-mainWindow.on("closed", () => (mainWindow = null));
+    mainWindow.loadURL( isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`);
+    mainWindow.on("closed", () => (mainWindow = null));
 };
 
 app.on("ready", createWindow);
@@ -139,13 +141,12 @@ electron.ipcMain.on('ip_adress_req', async () => {
 
 
 electron.ipcMain.on('burn-baby', () => {
-    var serverScript = fork(path.join(__dirname, './subprocess/serverscript.js'))
+    var serverScript = fork(path.join(__dirname, './subprocess/serverscript.js'));
     console.log( 'burn' );
-   serverScript.send({"is_on":true , "files":files})
+    serverScript.send({"is_on":true , "files":files});
 
-   electron.ipcMain.on('turn-off-server', () => { 
-    serverScript.send({"is_on":false})
-    // var turnOff = fork(path.join(__dirname, './subprocess/turn-off-process.js'));
+    electron.ipcMain.on('turn-off-server', () => { 
+    serverScript.send({"is_on":false});
  })
 });
 
