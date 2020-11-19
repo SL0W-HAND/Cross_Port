@@ -2,7 +2,10 @@
   "description": "An application to transfer files, developed in javascript with electron, react and express",
   "author": "Daniel Carrete G.",
   "build": {
-    "appId": "Cross Port"
+    "appId": "Cross Port",
+    "win":{
+      "icon":"public/appicon.ico"
+    }
   },
   "main": "public/electron.js",
   "homepage": "./",
