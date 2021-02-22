@@ -50,7 +50,6 @@ body header{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
     justify-content:space-between;
     align-items: center;
 }
@@ -58,18 +57,18 @@ body header{
 .card h3 {
     font-family: var(--font-2);
     font-size: var(--font-size-2);
-   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  resize: horizontal;
-  max-width: 50vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    resize: horizontal;
+    max-width: 50vw;
 }
 
 .card .buttons form{
-display: inline-block;
-margin-left: 3px;
-margin-right: 3px;
-margin-top: 5px;
+    display: inline-block;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 5px;
 }
 
 .get-button{
