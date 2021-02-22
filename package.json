@@ -3,8 +3,8 @@
   "author": "Daniel Carrete G.",
   "build": {
     "appId": "Cross Port",
-    "win":{
-      "icon":"public/appicon.ico"
+    "win": {
+      "icon": "public/appicon.ico"
     }
   },
   "main": "public/electron.js",
@@ -27,7 +27,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.0",
-    "wait-on": "^5.2.0",
+    "wait-on": "^5.2.1",
     "web-vitals": "^0.2.4",
     "wifi-name": "^3.1.1"
   },
