@@ -32,8 +32,8 @@
     "wifi-name": "^3.1.1"
   },
   "devDependencies": {
-    "electron": "^10.1.5",
-    "electron-builder": "^22.9.1"
+    "electron": "^10.4.5",
+    "electron-builder": "^22.11.4"
   },
   "scripts": {
     "react-start": "react-scripts start",
